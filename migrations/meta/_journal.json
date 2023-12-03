@@ -1,0 +1,27 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1701579374842,
+      "tag": "0000_brainy_maelstrom",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1701579614891,
+      "tag": "0001_mute_earthquake",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1701579771495,
+      "tag": "0002_nostalgic_ultimates",
+      "breakpoints": true
+    }
+  ]
+}
