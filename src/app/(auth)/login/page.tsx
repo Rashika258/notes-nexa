@@ -6,7 +6,10 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod'
 import { FormSchema } from '@/lib/types';
-
+import { Form } from '@/components/ui/form'
+import Link from 'next/link';
+import Logo from '../../../../public/cypresslogo.svg';
+import Image from 'next/image';
 const LoginPage = () => {
     const router = useRouter();
     const [submitError. setSubmitError] = useState('');
@@ -26,7 +29,27 @@ const LoginPage = () => {
     }
 
   return (
-    <div></div>
+    <Form {...form}>
+      <form onChange={() =>{
+
+      }}
+      onSubmit={form.handleSubmit(onSubmit)}
+      >
+        <Link  href="/"
+          className="
+          w-full
+          flex
+          justify-left
+          items-center">
+            <Image src={Logo}
+            alt="cypress Logo"
+            width={50}
+            height={50}  />
+          </Link>
+
+      </form>
+
+    </Form>
   );
 }
 
