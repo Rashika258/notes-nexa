@@ -12,7 +12,7 @@ import Logo from '../../../../public/cypresslogo.svg';
 import Image from 'next/image';
 const LoginPage = () => {
     const router = useRouter();
-    const [submitError. setSubmitError] = useState('');
+    const [submitError, setSubmitError] = useState('');
 
     const form = useForm<z.infer<typeof FormSchema>>({
       mode: 'onChange',
