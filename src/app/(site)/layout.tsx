@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
+import Header from '@/components/landing-page/header'
 
-const HomePageLayout = () => {
+const HomePageLayout = ({children} : {
+  children : ReactNode
+}) => {
   return (
-    <div>
-      
-    </div>
+ <main>
+  <Header />
+  {children}
+ </main>
   );
 }
 
