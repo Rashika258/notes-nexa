@@ -28,6 +28,29 @@ CREATE TABLE IF NOT EXISTS "folders" (
 	"workspace_id" uuid NOT NULL
 );
 --> statement-breakpoint
+CREATE TABLE IF NOT EXISTS "prices" (
+	"id" text PRIMARY KEY NOT NULL,
+	"product_id" text,
+	"active" boolean,
+	"description" text,
+	"unit_amount" bigint,
+	"currency" text,
+	"type" "pricing_type",
+	"interval" "pricing_plan_interval",
+	"interval_count" integer,
+	"trial_period_days" integer,
+	"metadata" jsonb
+);
+--> statement-breakpoint
+CREATE TABLE IF NOT EXISTS "products" (
+	"id" text PRIMARY KEY NOT NULL,
+	"active" boolean,
+	"name" text,
+	"description" text,
+	"image" text,
+	"metadata" jsonb
+);
+--> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "subscriptions" (
 	"id" text PRIMARY KEY NOT NULL,
 	"user_id" uuid NOT NULL,
@@ -44,6 +67,16 @@ CREATE TABLE IF NOT EXISTS "subscriptions" (
 	"canceled_at" timestamp with time zone DEFAULT now(),
 	"trial_start" timestamp with time zone DEFAULT now(),
 	"trial_end" timestamp with time zone DEFAULT now()
+);
+--> statement-breakpoint
+CREATE TABLE IF NOT EXISTS "users" (
+	"id" uuid PRIMARY KEY NOT NULL,
+	"full_name" text,
+	"avatar_url" text,
+	"billing_address" jsonb,
+	"updated_at" timestamp with time zone,
+	"payment_method" jsonb,
+	"email" text
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "workspaces" (
@@ -84,6 +117,12 @@ END $$;
 --> statement-breakpoint
 DO $$ BEGIN
  ALTER TABLE "folders" ADD CONSTRAINT "folders_workspace_id_workspaces_id_fk" FOREIGN KEY ("workspace_id") REFERENCES "workspaces"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+--> statement-breakpoint
+DO $$ BEGIN
+ ALTER TABLE "prices" ADD CONSTRAINT "prices_product_id_products_id_fk" FOREIGN KEY ("product_id") REFERENCES "products"("id") ON DELETE no action ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
