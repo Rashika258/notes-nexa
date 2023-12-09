@@ -21,6 +21,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <ThemeProvider attribute='class' enableSystem
         defaultTheme='dark'>
+
         {children}
         </ThemeProvider>
         
