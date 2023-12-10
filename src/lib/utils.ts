@@ -1,5 +1,6 @@
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
+import { Price } from "./supabase/supabase.types";
  
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -29,8 +30,7 @@ export const postData = async ({url, data}: {url:string, data? :{price : Price}}
   }
   return res.json();
 }
-
-const toDateTime = (secs: number) =>{
+export const toDateTime = (secs: number) =>{
   var t = new Date('1970-01-01T00:30:00Z');
   t.setSeconds(secs);
   return t;
