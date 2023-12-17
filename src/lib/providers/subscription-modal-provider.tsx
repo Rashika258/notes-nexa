@@ -11,7 +11,7 @@ import {
 import { useSupabaseUser } from './supabase-user-provider';
 import { getUserSubscriptionStatus } from '../supabase/queries';
 import SubscriptionModal from '@/components/global/subscription-modal';
-import { ProductWirhPrice } from '../supabase/supabase.types';
+import { ProductWithPrice } from '../supabase/supabase.types';
 
 type SubscriptionModalContextType = {
   open: boolean;
@@ -32,7 +32,7 @@ export const SubscriptionModalProvider = ({
   products,
 }: {
   children: React.ReactNode;
-  products: ProductWirhPrice[];
+  products: ProductWithPrice[];
 }) => {
   const [open, setOpen] = useState(false);
 
