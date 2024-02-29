@@ -1,14 +1,7 @@
-import { useSupabaseUser } from "@/lib/providers/supabase-user-provider";
-import { User } from "@/lib/supabase/supabase.types";
-import React, {
-  ChangeEvent,
-  FC,
-  ReactNode,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-import { clearTimeout } from "timers";
+'use client';
+import { useSupabaseUser } from '@/lib/providers/supabase-user-provider';
+import { User } from '@/lib/supabase/supabase.types';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   Sheet,
   SheetContent,
@@ -16,20 +9,22 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "../ui/sheet";
-import { Search } from "lucide-react";
-import { Input } from "../ui/input";
-import { ScrollArea } from "../ui/scroll-area";
-import { Button } from "../ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+} from '@/components/ui/sheet';
+import { Label } from '../ui/label';
+import { Search } from 'lucide-react';
+import { Input } from '../ui/input';
+import { ScrollArea } from '../ui/scroll-area';
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
+import { Button } from '../ui/button';
+import { getUsersFromSearch } from '@/lib/supabase/queries';
 
 interface CollaboratorSearchProps {
   existingCollaborators: User[] | [];
   getCollaborator: (collaborator: User) => void;
-  children: ReactNode;
+  children: React.ReactNode;
 }
 
-const CollaboratorSearch: FC<CollaboratorSearchProps> = ({
+const CollaboratorSearch: React.FC<CollaboratorSearchProps> = ({
   children,
   existingCollaborators,
   getCollaborator,
@@ -44,9 +39,14 @@ const CollaboratorSearch: FC<CollaboratorSearchProps> = ({
     };
   }, []);
 
-  const getUserData = () => {};
-  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+  const getUserData = ()=>{}
+
+  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (timerRef) clearTimeout(timerRef.current);
+    // timerRef.current = setTimeout(async () => {
+    //   const res = await getUsersFromSearch(e.target.value);
+    //   setSearchResults(res);
+    // }, 450);
   };
 
   const addCollaborator = (user: User) => {
@@ -66,7 +66,13 @@ const CollaboratorSearch: FC<CollaboratorSearchProps> = ({
             </p>
           </SheetDescription>
         </SheetHeader>
-        <div className="flex justify-center items-center gap-2 mt-2">
+        <div
+          className="flex justify-center
+          items-center
+          gap-2
+          mt-2
+        "
+        >
           <Search />
           <Input
             name="name"
@@ -75,7 +81,6 @@ const CollaboratorSearch: FC<CollaboratorSearchProps> = ({
             onChange={onChangeHandler}
           />
         </div>
-
         <ScrollArea
           className="mt-6
           overflow-y-scroll

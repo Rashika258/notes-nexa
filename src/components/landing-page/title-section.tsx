@@ -1,18 +1,18 @@
-import React, { FC, Fragment } from 'react';
+import React from 'react';
 
 interface TitleSectionProps {
   title: string;
-  subHeading?: string;
+  subheading?: string;
   pill: string;
 }
 
-const TitleSection: FC<TitleSectionProps> = ({
+const TitleSection: React.FC<TitleSectionProps> = ({
   title,
-  subHeading,
+  subheading,
   pill,
 }) => {
   return (
-    <Fragment>
+    <React.Fragment>
       <section
         className="flex
         flex-col
@@ -40,7 +40,7 @@ const TitleSection: FC<TitleSectionProps> = ({
             {pill}
           </div>
         </article>
-        {subHeading ? (
+        {subheading ? (
           <>
             <h2
               className="text-left
@@ -58,7 +58,7 @@ const TitleSection: FC<TitleSectionProps> = ({
               md:text-center
             "
             >
-              {subHeading}
+              {subheading}
             </p>
           </>
         ) : (
@@ -75,7 +75,7 @@ const TitleSection: FC<TitleSectionProps> = ({
           </h1>
         )}
       </section>
-    </Fragment>
+    </React.Fragment>
   );
 };
 

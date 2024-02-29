@@ -283,4 +283,4 @@ const ListItem = React.forwardRef<
   );
 });
 
-ListItem.displayName = 'ListItem'
+ListItem.displayName = 'ListItem';

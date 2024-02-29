@@ -1,23 +1,29 @@
+'use client';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
-import React, { FC, ReactNode } from 'react';
-import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
+import React from 'react';
+
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
 
 interface EmojiPickerProps {
-    children: ReactNode, 
-    getValue?: (emoji: string) => void
+  children: React.ReactNode;
+  getValue?: (emoji: string) => void;
 }
 
-const EmojiPicker: FC<EmojiPickerProps> = ({children, getValue}) => {
-    const route = useRouter();
-    const Picker = dynamic(() => import('emoji-picker-react'));
-    const onClick = (selectedEmoji : any) => {
-if(getValue) getValue(selectedEmoji.emoji)
-    }
+const EmojiPicker: React.FC<EmojiPickerProps> = ({ children, getValue }) => {
+  const route = useRouter();
+  const Picker = dynamic(() => import('emoji-picker-react'));
+  const onClick = (selectedEmoji: any) => {
+    if (getValue) getValue(selectedEmoji.emoji);
+  };
   return (
-    <div className='flex items-center'>
+    <div className="flex items-center">
       <Popover>
-      <PopoverTrigger className="cursor-pointer">{children}</PopoverTrigger>
+        <PopoverTrigger className="cursor-pointer">{children}</PopoverTrigger>
         <PopoverContent
           className="p-0
           border-none
@@ -28,6 +34,6 @@ if(getValue) getValue(selectedEmoji.emoji)
       </Popover>
     </div>
   );
-}
+};
 
 export default EmojiPicker;
