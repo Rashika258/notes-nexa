@@ -252,7 +252,6 @@ export const findUser = async (userId: string) => {
 };
 
 export const getActiveProductsWithPrice = async () => {
-  debugger;
   try {
     const res = await db.query.products.findMany({
       where: (pro, { eq }) => eq(pro.active, true),
